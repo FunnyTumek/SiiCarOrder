@@ -1,0 +1,14 @@
+{
+  "folders": [
+    {
+      "name": "Configurator",
+      "path": "./configurator/frontend/"
+    },
+    {
+      "name": "Dealer",
+      "path": "./dealer_portal/"
+    }
+  ],
+  "settings": {
+  }
+}

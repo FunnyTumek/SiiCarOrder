@@ -1,0 +1,61 @@
+<div class="client-details-item-wrapper">
+    <div class="client-details-item">
+        <div class="item-name">Order ID: </div>
+        <div class="item-data">
+            {{order?.id}}
+        </div>
+    </div>
+    <div class="client-details-item">
+        <div class="item-name">Status: </div>
+        <div class="status"
+             [style.backgroundColor]="order?.status | indicatePriority">
+            {{order?.status | orderStatus}}
+        </div>
+    </div>
+    <div class="client-details-item">
+        <div class="item-name">Creation date:</div>
+        <div class="item-data">
+            {{order?.creationDate | date: 'yyyy-MM-dd' }}
+        </div>
+    </div>
+</div>
+
+<div class="client-details-item-wrapper">
+    <div class="client-details-item">
+        <div class="item-name"> Client: </div>
+        <div class="item-data">
+            {{customer?.customerFirstName}} {{customer?.customerLastName}}
+        </div>
+    </div>
+    <div class="client-details-item">
+        <div class="item-name">Email: </div>
+        <div class="item-data">
+            {{customer?.customerEmail}}
+        </div>
+    </div>
+    <div class="client-details-item">
+        <div class="item-name">Tel:</div>
+        <div class="item-data">
+            {{customer?.customerPhone}}
+        </div>
+    </div>
+</div>
+
+<div class="client-details-item-wrapper">
+    <div class="client-details-item">
+        <div class="item-name"> Planned delivery date: </div>
+        <div class="item-data">
+            {{order?.plannedDeliveryDate | date: 'yyyy-MM-dd' }}
+        </div>
+    </div>
+</div>
+
+<div class="client-details-item-wrapper">
+
+    <div class="client-details-item">
+        <div class="item-name"> Additional info: </div>
+        <div class="item-data">
+            Here will be additional client information (not implemented)
+        </div>
+    </div>
+</div>

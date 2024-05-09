@@ -1,0 +1,242 @@
+[
+  {
+    "Brand": "Sii",
+    "Model": "Model X",
+    "EquipmentVersion": "Premium",
+    "Class": "Compact",
+    "Engine": {
+      "Code": "2.0 TFSI",
+      "Type": "Petrol",
+      "Capacity": 1968,
+      "Power": 200
+    },
+    "Gearbox": {
+      "Type": "manual",
+      "GearCount": 6
+    },
+    "Color": "black",
+    "Interior": "black",
+    "AdditionalEquipment": [
+      "test1",
+      "test2",
+      "test3"
+    ],
+    "Price": 129999
+  },
+  {
+    "Brand": "Sii",
+    "Model": "Model Y",
+    "EquipmentVersion": "Basic",
+    "Class": "City",
+    "Engine": {
+      "Code": "1.4 TFSI",
+      "Type": "Petrol",
+      "Capacity": 1399,
+      "Power": 80
+    },
+    "Gearbox": {
+      "Type": "manual",
+      "GearCount": 5
+    },
+    "Color": "black",
+    "Interior": "black",
+    "AdditionalEquipment": [
+      "test1",
+      "test2",
+      "test3"
+    ],
+    "Price": 59999
+  },
+  {
+    "Brand": "Sii",
+    "Model": "Model X",
+    "EquipmentVersion": "Comfort",
+    "Class": "Compact",
+    "Engine": {
+      "Code": "2.0 TFSI",
+      "Type": "Petrol",
+      "Capacity": 1968,
+      "Power": 200
+    },
+    "Gearbox": {
+      "Type": "manual",
+      "GearCount": 6
+    },
+    "Color": "white",
+    "Interior": "grey",
+    "AdditionalEquipment": [
+      "test1",
+      "test2",
+      "test3"
+    ],
+    "Price": 122999
+  },
+  {
+    "Brand": "Sii",
+    "Model": "Model Z",
+    "EquipmentVersion": "Luxury",
+    "Class": "SUV",
+    "Engine": {
+      "Code": "3.0 TDI",
+      "Type": "Diesel",
+      "Capacity": 2999,
+      "Power": 300
+    },
+    "Gearbox": {
+      "Type": "automatic",
+      "GearCount": 9
+    },
+    "Color": "blue",
+    "Interior": "black",
+    "AdditionalEquipment": [
+      "test1",
+      "test2",
+      "test3"
+    ],
+    "Price": 249999
+  },
+  {
+    "Brand": "Sii",
+    "Model": "Model Y",
+    "EquipmentVersion": "Basic",
+    "Class": "City",
+    "Engine": {
+      "Code": "1.0 FSI",
+      "Type": "Petrol",
+      "Capacity": 998,
+      "Power": 80
+    },
+    "Gearbox": {
+      "Type": "automatic",
+      "GearCount": 6
+    },
+    "Color": "white",
+    "Interior": "black",
+    "AdditionalEquipment": [
+      "test1",
+      "test2",
+      "test3"
+    ],
+    "Price": 79999
+  },
+  {
+    "Brand": "Sii",
+    "Model": "Model Z",
+    "EquipmentVersion": "Luxury",
+    "Class": "SUV",
+    "Engine": {
+      "Code": "3.0 TDI",
+      "Type": "Diesel",
+      "Capacity": 2999,
+      "Power": 300
+    },
+    "Gearbox": {
+      "Type": "automatic",
+      "GearCount": 9
+    },
+    "Color": "blue",
+    "Interior": "black",
+    "AdditionalEquipment": [
+      "test1",
+      "test2",
+      "test3"
+    ],
+    "Price": 249999
+  },
+  {
+    "Brand": "Sii",
+    "Model": "Model S",
+    "EquipmentVersion": "Luxury",
+    "Class": "GT",
+    "Engine": {
+      "Code": "V8 TFSI",
+      "Type": "Petrol",
+      "Capacity": 4989,
+      "Power": 560
+    },
+    "Gearbox": {
+      "Type": "automatic",
+      "GearCount": 9
+    },
+    "Color": "black",
+    "Interior": "light",
+    "AdditionalEquipment": [
+      "test1",
+      "test2",
+      "test3"
+    ],
+    "Price": 329999
+  },
+  {
+    "Brand": "Sii",
+    "Model": "Model L",
+    "EquipmentVersion": "Premium",
+    "Class": "Midsize",
+    "Engine": {
+      "Code": "2.0 TDI",
+      "Type": "Diesel",
+      "Capacity": 1989,
+      "Power": 170
+    },
+    "Gearbox": {
+      "Type": "automatic",
+      "GearCount": 7
+    },
+    "Color": "dark blue",
+    "Interior": "white",
+    "AdditionalEquipment": [
+      "test1",
+      "test2",
+      "test3"
+    ],
+    "Price": 179999
+  },
+  {
+    "Brand": "Sii",
+    "Model": "Model Q",
+    "EquipmentVersion": "Executive",
+    "Class": "Fullsize",
+    "Engine": {
+      "Code": "V12 TFIS",
+      "Type": "Petrol",
+      "Capacity": 5999,
+      "Power": 750
+    },
+    "Gearbox": {
+      "Type": "automatic",
+      "GearCount": 9
+    },
+    "Color": "black",
+    "Interior": "dark",
+    "AdditionalEquipment": [
+      "test1",
+      "test2",
+      "test3"
+    ],
+    "Price": 559999
+  },
+  {
+    "Brand": "Sii",
+    "Model": "Model X",
+    "EquipmentVersion": "Premium",
+    "Class": "Compact",
+    "Engine": {
+      "Code": "2.0 TFSI",
+      "Type": "Petrol",
+      "Capacity": 1968,
+      "Power": 200
+    },
+    "Gearbox": {
+      "Type": "manual",
+      "GearCount": 6
+    },
+    "Color": "black",
+    "Interior": "black",
+    "AdditionalEquipment": [
+      "test1",
+      "test2",
+      "test3"
+    ],
+    "Price": 12999
+  }
+]

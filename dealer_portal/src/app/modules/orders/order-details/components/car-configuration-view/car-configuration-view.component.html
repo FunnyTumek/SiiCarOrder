@@ -1,0 +1,12 @@
+<div class="detail-item"
+     *ngFor="let category of configuration">
+    <ng-container *ngFor="let item of category?.properties">
+        <div class="item-content">
+            <div>
+                {{item?.key| titlecase}}
+            </div>
+            <div>
+                {{item?.value}}
+            </div>
+        </div>
+    </ng-container>

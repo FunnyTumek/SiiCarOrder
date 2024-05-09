@@ -1,0 +1,77 @@
+@use 'variables' as var;
+
+.payment-summary-wrapper {
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    padding: 24px;
+
+    .progress-bar {
+        margin: 0 auto;
+        margin-top: 16px;
+        width: 100%;
+    }
+}
+
+.payment-summary {
+    display: flex;
+    justify-content: space-between;
+
+    .payment-summary-element {
+        text-align: center;
+
+        .value {
+            margin-top: 10px;
+        }
+
+        .title {
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+    }
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: var.$normal-spacing*2;
+    padding-right: var.$normal-spacing*2;
+
+}
+
+.payment-item {
+    display: flex;
+    min-height: 50px;
+    border-bottom: 1px solid lightgray;
+
+    mat-expansion-panel {
+
+        flex-grow: 1;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    mat-panel-description {
+        justify-content: flex-end;
+        max-width: fit-content;
+        padding: 1px 10px;
+        border-radius: 12px;
+        color: black;
+
+    }
+
+    mat-panel-title {
+        justify-content: flex-start;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 24px;
+
+        button {
+            padding: 0px 10px;
+        }
+    }
+}

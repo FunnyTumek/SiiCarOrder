@@ -1,0 +1,110 @@
+{
+  "folders": [
+    {
+      "name": "Configurator",
+      "path": "./configurator/backend/"
+    },
+    {
+      "name": "Dealer",
+      "path": "./dealer/"
+    },
+    {
+      "name": "Factory",
+      "path": "./factory/"
+    },
+    {
+      "name": "Contracts",
+      "path": "./contracts/"
+    }
+  ],
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Build all",
+        "command": "echo 'All projects built'",
+        "type": "shell",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "dependsOn": [
+          "Build configurator",
+          "Build dealer",
+          "Build factory"
+        ],
+        "dependsOrder": "parallel"
+      },
+      {
+        "label": "Build configurator",
+        "command": "dotnet",
+        "type": "process",
+        "options": {
+          "cwd": "${workspaceFolder:Configurator}/Configurator.Api"
+        },
+        "args": [
+          "build",
+          "/property:GenerateFullPaths=true",
+          "/consoleloggerparameters:NoSummary"
+        ],
+        "problemMatcher": "$msCompile"
+      },
+      {
+        "label": "Build dealer",
+        "command": "dotnet",
+        "type": "process",
+        "options": {
+          "cwd": "${workspaceFolder:Dealer}/Sii.Dealer.Api"
+        },
+        "args": [
+          "build",
+          "/property:GenerateFullPaths=true",
+          "/consoleloggerparameters:NoSummary"
+        ],
+        "problemMatcher": "$msCompile"
+      },
+      {
+        "label": "Build factory",
+        "command": "dotnet",
+        "type": "process",
+        "options": {
+          "cwd": "${workspaceFolder:Factory}/SiiCarOrder.Factory.Api"
+        },
+        "args": [
+          "build",
+          "/property:GenerateFullPaths=true",
+          "/consoleloggerparameters:NoSummary"
+        ],
+        "problemMatcher": "$msCompile"
+      },
+      {
+        "label": "Build contracts",
+        "command": "dotnet",
+        "type": "process",
+        "options": {
+          "cwd": "${workspaceFolder:Contracts}/Sii.CarOrder.Contracts"
+        },
+        "args": [
+          "build",
+          "/property:GenerateFullPaths=true",
+          "/consoleloggerparameters:NoSummary"
+        ],
+        "problemMatcher": "$msCompile"
+      }
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "compounds": [
+      {
+        "name": "Launch all",
+        "configurations": [
+          "Launch configurator",
+          "Launch dealer",
+          "Launch factory"
+        ]
+      }
+    ]
+  },
+  "settings": {}
+}

@@ -1,0 +1,24 @@
+<mat-accordion>
+    <div class="history-item"
+         *ngFor="let item of dataSource">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{item.title}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    {{item.date|date}}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="detail-item">
+                <div class="item-name">
+                    <p>{{item.responsibleWorker.firstName}} {{item.responsibleWorker.lastName}}
+                        WorkerID: {{item.responsibleWorker.id}}</p>
+                </div>
+                <div class="item-data">
+                    {{item.message}}
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </div>
+</mat-accordion>

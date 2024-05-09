@@ -1,0 +1,18 @@
+ @use 'variables' as var;
+
+ :host {
+     .detail-item {
+         display: flex;
+         flex-direction: column;
+         border-bottom: 1px solid lightgray;
+     }
+
+     .item-content {
+         display: flex;
+         justify-content: space-between;
+         font-size: medium;
+         text-align: start;
+         line-height: var.$normal-spacing;
+         padding: var.$normal-spacing*2;
+     }
+ }

@@ -1,0 +1,31 @@
+<mat-card class="order-summary-container">
+    <sii-client-details-view [customer]="(order$ | async)?.customer"
+                             [order]="(order$ | async)?.order"></sii-client-details-view>
+</mat-card>
+<div class="order-details-container">
+    <mat-card class="configuration details-column">
+        <mat-card-subtitle>
+            🛒&nbsp;Configuration
+        </mat-card-subtitle>
+        <div class="mat-card-content">
+            <sii-car-configuration-view [configuration]="(order$ | async)?.configuration"></sii-car-configuration-view>
+            <div class="button-wrapper">
+                <button mat-raised-button>Edit</button>
+            </div>
+        </div>
+
+    </mat-card>
+    <mat-card class="payments details-column">
+        <mat-card-subtitle>💵&nbsp;Payments</mat-card-subtitle>
+        <div class="mat-card-content ">
+            <sii-payments-view [dataSource]="(payments$ | async)??[]"
+                               [order]="order"></sii-payments-view>
+        </div>
+    </mat-card>
+    <mat-card class="history details-column">
+        <mat-card-subtitle>📜&nbsp;History</mat-card-subtitle>
+        <div class="mat-card-content ">
+            <sii-history-view [dataSource]="(history$ | async)??[]"></sii-history-view>
+        </div>
+    </mat-card>
+</div>

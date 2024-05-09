@@ -1,0 +1,38 @@
+ @use 'variables' as var;
+
+ :host {
+     display: flex;
+     justify-content: space-between;
+     align-items: flex-start;
+     flex-direction: row;
+
+     .client-details-item-wrapper {
+         display: flex;
+         flex-grow: 1;
+         flex-direction: column;
+         justify-content: center;
+         max-width: fit-content;
+
+         .client-details-item {
+             display: flex;
+             flex-grow: 1;
+             justify-content: space-between;
+             align-items: center;
+             padding: 8px;
+
+             .item-name {
+                 margin-right: var.$normal-spacing*4;
+                 font-weight: 500;
+             }
+
+             .status {
+                 padding: 1px 10px 1px 10px;
+                 border-radius: 12px;
+             }
+
+             .item-data {
+                 padding-right: 8px;
+             }
+         }
+     }
+ }

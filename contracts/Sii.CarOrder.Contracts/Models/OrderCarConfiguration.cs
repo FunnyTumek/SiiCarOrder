@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Sii.CarOrder.Contracts.Models
+{
+    public class OrderCarConfiguration
+    {
+        public string BrandCode { get; set; }
+        public string ModelCode { get; set; }
+        public string EquipmentVersionCode { get; set; }
+        public string ClassCode { get; set; }
+        public string EngineCode { get; set; }
+        public string GearboxCode { get; set; }
+        public string ColorCode { get; set; }
+        public string InteriorCode { get; set; }
+        public IEnumerable<string> AdditionalEquipmentCodes { get; set; }
+
+    }
+}

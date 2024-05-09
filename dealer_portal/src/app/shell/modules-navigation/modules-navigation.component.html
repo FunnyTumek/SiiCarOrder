@@ -1,0 +1,29 @@
+<mat-tab-group [color]="'warn'"
+               [selectedIndex]="selectedIndex"
+               (selectedTabChange)="onMatTabChange($event)">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span (click)="onOrderClick($event,'orders')">Orders</span>
+    </ng-template>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span>Clients</span>
+    </ng-template>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span>Payments</span>
+    </ng-template>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span>Production</span>
+    </ng-template>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span>Dictionaries</span>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

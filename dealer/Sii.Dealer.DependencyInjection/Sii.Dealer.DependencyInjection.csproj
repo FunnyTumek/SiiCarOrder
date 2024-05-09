@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.3.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sii.Dealer.Customers\Sii.Dealer.Customers.csproj" />
+    <ProjectReference Include="..\Sii.Dealer.Core.Application\Sii.Dealer.Core.Application.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\Sii.Dealer.Core.Domain\Sii.Dealer.Core.Domain.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\Sii.Dealer.Core.Infrastructure\Sii.Dealer.Core.Infrastructure.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\Sii.Dealer.ReadModel\Sii.Dealer.ReadModel.csproj" />
+  </ItemGroup>
+
+</Project>

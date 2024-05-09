@@ -1,0 +1,38 @@
+@use 'utils';
+
+table {
+  @include utils.alternate-table-rows;
+}
+
+.full-size {
+  width: 100%;
+}
+
+.selected-row {
+  background-color: #cfddf9 !important;
+}
+
+.active-icon {
+  text-align: center;
+  vertical-align: sub;
+  height: 18px;
+  font-size: 24px;
+}
+
+.table-header {
+  height: 40px;
+}
+
+.table-row {
+  height: 32px;
+  vertical-align: middle;
+}
+
+.column-active {
+  width: 50px;
+}
+
+.column-code {
+  width: 100px;
+}
+

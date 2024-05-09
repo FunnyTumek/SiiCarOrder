@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+
+.App .app-content {
+  height: 100vh;
+  width: 100wv;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  overflow: hidden;
+  height: 100vh;
+}

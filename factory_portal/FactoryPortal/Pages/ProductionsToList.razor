@@ -1,0 +1,174 @@
+﻿@page "/productions"
+@inject NavigationManager NavigationManager
+@using FactoryPortal.Data
+@using FactoryPortal.Service
+@using Sii.CarOrder.Contracts.Enums
+@using Microsoft.AspNetCore.SignalR.Client
+@inject HubConnection HubConnection
+
+<PageTitle>Productions</PageTitle>
+
+<h2 class="text-center mt-4 mb-5">List of productions</h2>
+
+<div class="mx-5 text-center">
+
+	<DataGrid TItem="ProductionDetails"
+			  Data="@productionsList"
+			  @bind-SelectedRow="@selectedProduction"
+			  Sortable="true"
+			  PageSize="10"
+			  @onclick="(() => NavigateToDetailsView(selectedProduction))"
+			  ShowPager
+			  Editable="true"
+			  Responsive>
+
+		<DataGridCommandColumn>
+			<NewCommandTemplate></NewCommandTemplate>
+			<DeleteCommandTemplate></DeleteCommandTemplate>
+
+			<EditCommandTemplate>
+				<Button Color="Color.Warning" Clicked="@ShowCancelModal" Disabled="context.Item.Status != ProductionStatus.Started">Cancel</Button>
+			</EditCommandTemplate>
+
+		</DataGridCommandColumn>
+
+		<DataGridColumn Field="@nameof(ProductionDetails.FactoryId)" Caption="Id" />
+		<DataGridColumn Field="@nameof(ProductionDetails.CreateDate)" DisplayFormat="{0:dd-MM-yyyy}" Caption="Create date" />
+		<DataGridColumn Field="@nameof(ProductionDetails.PlannedDeliveryDate)" DisplayFormat="{0:dd-MM-yyyy}" Caption="Planned delivery date" />
+		<DataGridColumn Field="@nameof(ProductionDetails.Vin)" Caption="Vin" />
+		<DataGridColumn Field="@nameof(ProductionDetails.Status)" Caption="Status" />
+		<DataGridColumn Width="25%" Caption="Progress">
+			<DisplayTemplate>
+				@if ((context as ProductionDetails).Status == Sii.CarOrder.Contracts.Enums.ProductionStatus.Ended)
+				{
+					<Progress Value="100" Animated Striped />
+				}
+				else if ((context as ProductionDetails).Status == Sii.CarOrder.Contracts.Enums.ProductionStatus.Canceled)
+				{
+					<Progress Value="100" Animated Striped />
+				}
+				else
+				{
+					<Progress Value="(context as ProductionDetails).Progress" Animated Striped />
+				}
+			</DisplayTemplate>
+		</DataGridColumn>
+	</DataGrid>
+</div>
+
+<Modal @ref="cancelModal" ShowBackdrop="false" Closing="@OnModalClosing">
+	<ModalContent>
+		<ModalHeader>
+			<ModalTitle>Cancel production @selectedProduction.Vin</ModalTitle>
+		</ModalHeader>
+		<ModalBody>
+			<Field>
+				<FieldLabel>Reason:</FieldLabel>
+				<TextEdit @bind-Text="@reason" />
+			</Field>
+		</ModalBody>
+		<ModalFooter>
+			<Button Color="Color.Secondary" Clicked="@CloseCancelModal">Back</Button>
+			<Button Color="Color.Primary" Clicked="@ShowConfirmModal">Ok</Button>
+		</ModalFooter>
+	</ModalContent>
+</Modal>
+
+<Modal @ref="confirmModal">
+	<ModalContent Centered Size="ModalSize.Small">
+		<ModalHeader>
+			<ModalTitle>Are you sure to cancel?</ModalTitle>
+		</ModalHeader>
+		<ModalFooter>
+			<Button Color="Color.Secondary" Clicked="@CloseConfirmModal">NO</Button>
+			<Button Color="Color.Primary" Clicked="@SaveConfirmModal">YES</Button>
+		</ModalFooter>
+	</ModalContent>
+</Modal>
+
+@code {
+	[Inject]
+	public IProductionsService ProductionsService { get; set; }
+	private IEnumerable<ProductionDetails> productionsList = new List<ProductionDetails>();
+	private HubConnection? hubConnection;
+	private ProductionDetails selectedProduction = new ProductionDetails();
+	private Modal cancelModal;
+	private Modal confirmModal;
+	public string reason;
+	public bool showDetails { get; set; } = true;
+
+
+
+	protected override async Task OnInitializedAsync()
+	{
+		productionsList = await ProductionsService.GetCurrentProductions();
+		await base.OnInitializedAsync();
+		hubConnection = new HubConnectionBuilder()
+			.WithUrl("http://localhost:8083/productionProgressNotifications")
+			.Build();
+
+		hubConnection.On<Guid, int>("ReportProductionProgress", async (carVin, progress) =>
+		{
+			productionsList = await ProductionsService.GetCurrentProductions();
+			var listWithCarVin = productionsList.FirstOrDefault(x => x.Vin == carVin);
+			listWithCarVin.Progress = progress;
+			productionsList = new List<ProductionDetails>(productionsList);
+
+			await InvokeAsync(StateHasChanged);
+		});
+
+		await hubConnection.StartAsync();
+	}
+
+	public void NavigateToDetailsView(ProductionDetails productionDetails)
+	{
+		if (showDetails)
+		{
+			NavigationManager.NavigateTo($"/productions/{productionDetails.FactoryId}");
+		}
+	}
+
+	private Task ShowCancelModal()
+	{
+		showDetails = false;
+		return cancelModal.Show();
+	}
+
+	private Task ShowConfirmModal()
+	{
+		return confirmModal.Show();
+	}
+
+	private Task CloseCancelModal()
+	{
+		return cancelModal.Hide();
+	}
+
+	private Task CloseConfirmModal()
+	{
+		return confirmModal.Hide();
+	}
+
+	private async Task SaveConfirmModal()
+	{
+		await CancelProduction();
+		await CloseConfirmModal();
+		await CloseCancelModal();
+	}
+
+	private async Task CancelProduction()
+	{
+		if (selectedProduction.Vin.HasValue && selectedProduction.FactoryId != 0)
+		{
+			await ProductionsService.CancelProduction(selectedProduction.FactoryId, selectedProduction.Vin.Value, reason);
+			productionsList.Single(f => f.FactoryId == selectedProduction.FactoryId).Status = ProductionStatus.Canceled;
+		}
+	}
+
+	private Task OnModalClosing(ModalClosingEventArgs e)
+	{
+		reason = String.Empty;
+		showDetails = true;
+		return Task.CompletedTask;
+	}
+}

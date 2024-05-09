@@ -1,0 +1,80 @@
+<div class="center-text">{{ type }}<div>
+<h1 class="header">{{ option.code }}</h1>
+<div mat-dialog-content class="dialog-content">
+  <ng-container *ngIf="brand">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input title="Name" matInput [(ngModel)]="brand.name">
+    </mat-form-field>
+  </ng-container>
+  <ng-container *ngIf="model">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input title="Name" matInput [(ngModel)]="model.name">
+    </mat-form-field>
+  </ng-container>
+  <ng-container *ngIf="equipmentVersion">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input title="Name" matInput [(ngModel)]="equipmentVersion.name">
+    </mat-form-field>
+  </ng-container>
+  <ng-container *ngIf="class">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input title="Name" matInput [(ngModel)]="class.name">
+    </mat-form-field>
+  </ng-container>
+  <ng-container *ngIf="engine">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input title="Name" matInput [(ngModel)]="engine.name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select [(value)]="engine.type">
+        <mat-option *ngFor="let type of engineTypes" [value]="type">{{ type }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Capacity</mat-label>
+      <input type="number" min="0" max="9999" step="1" title="Capacity" matInput [(ngModel)]="engine.capacity">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Power</mat-label>
+      <input type="number" min="0" max="1500" step="1" title="Power" matInput [(ngModel)]="engine.power">
+    </mat-form-field>
+  </ng-container>
+  <ng-container *ngIf="gearbox">
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <input title="Type" matInput [(ngModel)]="gearbox.type">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Gear count</mat-label>
+      <input type="number" title="GearCount" min="0" max="7" step="1" matInput [(ngModel)]="gearbox.gearsCount">
+    </mat-form-field>
+  </ng-container>
+  <ng-container *ngIf="color">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input title="Name" matInput [(ngModel)]="color.name">
+    </mat-form-field>
+  </ng-container>
+  <ng-container *ngIf="interior">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input title="Name" matInput [(ngModel)]="interior.name">
+    </mat-form-field>
+  </ng-container>
+  <ng-container *ngIf="additionalEquipment">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input title="Name" matInput [(ngModel)]="additionalEquipment.name">
+    </mat-form-field>
+  </ng-container>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button type="submit" color="primary" mat-raised-button (click)="onClose()" cdkFocusInitial>Save</button>
+  <button type="button" mat-raised-button (click)="onDiscardClick()">Discard</button>
+</div>

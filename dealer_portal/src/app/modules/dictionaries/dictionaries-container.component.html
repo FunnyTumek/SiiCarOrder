@@ -1,0 +1,13 @@
+<mat-button-toggle-group>
+  <mat-button-toggle *ngFor="let type of types"
+                     [checked]="type === selectedType"
+                     [value]="type"
+                     (change)="onSelectedDictionaryChanged($event)">
+    <mat-icon>local_library</mat-icon>
+    <span class="tab-title">{{ type }}</span>
+  </mat-button-toggle>
+</mat-button-toggle-group>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

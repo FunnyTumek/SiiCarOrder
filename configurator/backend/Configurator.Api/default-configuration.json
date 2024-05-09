@@ -1,0 +1,54 @@
+{
+  "brand": {
+    "code": "BC01",
+    "name": "Sii",
+    "price":  0
+  },
+  "model": {
+    "code": "MC01",
+    "name": "Model S",
+    "price": 15000
+  },
+  "equipmentVersion": {
+    "code": "EV01",
+    "name": "Basic",
+    "price": 10000
+  },
+  "class": {
+    "code": "CC01",
+    "name": "City",
+    "price": 15000
+  },
+  "engine": {
+    "code": "EC01",
+    "name": "1.0 TSI",
+    "type": "Petrol",
+    "capacity": 998,
+    "power": 75,
+    "price": 10000
+  },
+  "gearbox": {
+    "code": "GC01",
+    "type": "manual",
+    "gearsCount": 5,
+    "price": 10000
+  },
+  "color": {
+    "code": "CO01",
+    "name": "black",
+    "price": 10000
+  },
+  "interior": {
+    "code": "IC01",
+    "name": "black leather",
+    "price": 10000
+  },
+  "additionalEquipments": [
+    {
+      "code": "AE01",
+      "name": "comfort seat package",
+      "price": 5000
+    }
+  ],
+  "price": 85000
+}

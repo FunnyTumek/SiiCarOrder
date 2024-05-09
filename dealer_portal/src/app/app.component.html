@@ -1,0 +1,14 @@
+<header class="application-header mat-elevation-z8">
+  <div class="app-logo">
+    <sii-logo></sii-logo>
+  </div>
+  <sii-modules-navigation (navigate)="onNavigate($event)"></sii-modules-navigation>
+</header>
+
+<section class="router-container">
+  <sii-quick-actions-panel class="mat-elevation-z2"></sii-quick-actions-panel>
+
+  <section class="content-section">
+    <router-outlet></router-outlet>
+  </section>
+</section>

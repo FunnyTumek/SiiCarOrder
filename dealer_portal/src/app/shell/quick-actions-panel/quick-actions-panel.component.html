@@ -1,0 +1,20 @@
+<div class="action-panel-content"
+     @enterExitRight
+     *ngIf="!hidden">
+  <ul class="group-list">
+    <li *ngFor="let group of panelActions">
+      <div>{{group?.label}}</div>
+      <ul *ngIf="group"
+          class="actions-list">
+        <li *ngFor="let item of group?.actions">
+          <button type="button"
+                  mat-button
+                  disabled="{{!item?.enabled}}"
+                  (click)="onActionClick(item)">
+            {{item?.label}}
+          </button>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

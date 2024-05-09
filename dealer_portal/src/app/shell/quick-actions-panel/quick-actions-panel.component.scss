@@ -1,0 +1,74 @@
+@use 'variables';
+@use 'utils';
+
+:host {
+  @extend %no-select;
+  display: flex;
+  flex-direction: column;
+  z-index: 500;
+  background: variables.$navigation-horizontal-gradient;
+
+  div.action-panel-content {
+    min-width: variables.$command-panel-width;
+    padding: 1em;
+    width: variables.$command-panel-width;
+    color: variables.$command-color;
+    box-sizing: border-box;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      list-style: none;
+      @extend %flex-full-width;
+      flex-direction: column;
+
+      li {
+        padding: 10px;
+        border-radius: 5px;
+        transition-duration: 150ms;
+      }
+
+      &.actions-list {
+        align-items: flex-end;
+        cursor: pointer;
+        font-weight: normal;
+        margin-bottom: 0px;
+
+        li {
+          padding: 0;
+          padding-top: 4px;
+          width: 100%;
+
+          button {
+            width: 100%;
+            color: #fafafa;
+            text-align: center;
+            transition-duration: 250ms;
+
+            &:hover {
+              transition-duration: 250ms;
+              background-color: #3367B2;
+            }
+
+            &:disabled {
+              color: #3367B2;
+              background-color: transparent;
+              transition-duration: 250ms;
+            }
+          }
+        }
+      }
+
+      &.group-list {
+        font-weight: 500;
+        color: #b3cbdf;
+
+        li div {
+          font-size: 14px;
+          border-bottom: 1px solid lightblue;
+        }
+      }
+    }
+  }
+}

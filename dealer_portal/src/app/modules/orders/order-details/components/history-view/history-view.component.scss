@@ -1,0 +1,47 @@
+@use 'variables' as var;
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-left: var.$normal-spacing*2;
+    padding-right: var.$normal-spacing*2;
+    border-top: 1px solid lightgray;
+}
+
+.item-name p {
+    font-size: medium;
+    text-align: start;
+}
+
+.item-data p {
+    font-size: medium;
+    text-align: end;
+}
+
+.history-item {
+    display: flex;
+    border-bottom: 1px solid lightgray;
+
+    mat-expansion-panel {
+        min-height: 50px;
+        flex-grow: 1;
+        border-radius: 0;
+        box-shadow: none;
+
+        .item-data {
+            word-wrap: break-word;
+            max-width: 100%;
+        }
+
+    }
+
+    mat-panel-description {
+        justify-content: flex-end;
+    }
+
+    mat-panel-title {
+        justify-content: flex-start;
+    }
+}

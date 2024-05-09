@@ -1,0 +1,34 @@
+@use 'utils';
+@use 'variables';
+
+:host {
+  @extend %flex-full-width;
+  flex-direction: column;
+
+  .application-header {
+    @extend %no-select;
+    display: flex;
+    z-index: 1000;
+    width: 100%;
+    box-sizing: border-box;
+
+    background: variables.$header-color;
+    min-height: variables.$header-height;
+
+    .app-logo {
+      width: variables.$command-panel-width;
+      min-width: 160px;
+    }
+  }
+
+  .router-container {
+    @extend %flex-full-width;
+    max-height: calc(100% - variables.$header-height);
+
+    .content-section {
+      @extend %flex-full-width;
+      background-color: variables.$content-card-color;
+      padding: 0.2em;
+    }
+  }
+}

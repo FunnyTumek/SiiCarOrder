@@ -1,0 +1,3 @@
+<sii-order-list [orderListData]="orders$ | async"
+                (orderDetailsRedirect)="onDetailsRedirect($event)"
+                (updatePaginatedOrderTable)="onUpdatePaginatedOrderTable($event)"></sii-order-list>

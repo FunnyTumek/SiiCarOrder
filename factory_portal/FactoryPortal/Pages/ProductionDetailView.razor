@@ -1,0 +1,130 @@
+﻿@page "/productions/{Id:int}"
+@using FactoryPortal.Data;
+@using FactoryPortal.Service;
+
+<h2 class="text-center mt-4 mb-5">Production details</h2>
+
+<div class="mt-5 ml-3 mr-3 mb-5">
+
+	<Field Horizontal>
+		<FieldLabel ColumnSize="ColumnSize.Is2" TextAlignment="TextAlignment.End">ID</FieldLabel>
+		<FieldBody ColumnSize="ColumnSize.Is4">
+			<TextEdit TextAlignment="TextAlignment.Start" ReadOnly Text="@productionDetails.FactoryId.ToString()">
+			</TextEdit>
+		</FieldBody>
+	</Field>
+
+		<Field Horizontal>
+		<FieldLabel ColumnSize="ColumnSize.Is2" TextAlignment="TextAlignment.End">Started Date</FieldLabel>
+		<FieldBody ColumnSize="ColumnSize.Is4">
+			<TextEdit TextAlignment="TextAlignment.Start" ReadOnly Text="@productionDetails.CreateDate.ToString("dd-MM-yyyy")">
+			</TextEdit>
+		</FieldBody>
+	</Field>
+	
+	<Field Horizontal>
+		<FieldLabel ColumnSize="ColumnSize.Is2" TextAlignment="TextAlignment.End">Ended Date</FieldLabel>
+		<FieldBody ColumnSize="ColumnSize.Is4">
+			<TextEdit TextAlignment="TextAlignment.Start" ReadOnly Text="@productionDetails.PlannedDeliveryDate.ToString("dd-MM-yyyy")">
+			</TextEdit>
+		</FieldBody>
+	</Field>
+
+	<Field Horizontal>
+		<FieldLabel ColumnSize="ColumnSize.Is2 " TextAlignment="TextAlignment.End">Vin</FieldLabel>
+		<FieldBody ColumnSize="ColumnSize.Is4">
+			<TextEdit TextAlignment="TextAlignment.Start" ReadOnly Text="@productionDetails.Vin.ToString()">
+			</TextEdit>
+		</FieldBody>
+	</Field>
+
+	<Field Horizontal>
+		<FieldLabel ColumnSize="ColumnSize.Is2" TextAlignment="TextAlignment.End">Status</FieldLabel>
+		<FieldBody ColumnSize="ColumnSize.Is4">
+			<TextEdit TextAlignment="TextAlignment.Start" ReadOnly Text="@productionDetails.Status.ToString()">
+			</TextEdit>
+		</FieldBody>
+	</Field>
+</div>
+
+<Steps SelectedStep="@selectedStep" SelectedStepChanged="@OnSelectedStepChanged">
+	<Items>
+		@{
+			int indexStep = 0;
+			var lastElement = productionProgressState.Last();
+		}
+		@foreach (var item in productionProgressState)
+		{
+			if (item.Equals(lastElement))
+			{
+				<Step Name="@indexStep.ToString()">
+					<Marker>
+						<Icon Name="IconName.Flag" />
+					</Marker>
+					<Caption>
+						<div style="font-size: 0.85em; white-space:pre-wrap; word-break:break-word;" class="text-center">
+							@item.Date @item.StateName
+						</div>
+					</Caption>
+				</Step>
+			}
+			else
+			{
+				<Step Name="@indexStep.ToString()">
+					<div style="font-size: 0.85em; white-space:pre-wrap; word-break:break-word;" class="text-center">
+						@item.Date @item.StateName
+					</div>
+				</Step>
+			}
+			indexStep++;
+		}
+	</Items>
+
+	<Content>
+		@{
+			int indexStepPanel = 0;
+		}
+		@foreach (var item in productionProgressState)
+		{
+			<StepPanel Name="@indexStepPanel.ToString()">
+				@if (item.Information != null)
+				{
+					<Field>
+						<div class="text-center">
+							<FieldLabel>Additional information: </FieldLabel>
+							<FieldLabel>@item.Information</FieldLabel>
+						</div>
+					</Field>
+				}
+			</StepPanel>
+			indexStepPanel++;
+		}
+	</Content>
+</Steps>
+
+@code {
+
+	string selectedStep = "0";
+
+	private Task OnSelectedStepChanged(string name)
+	{
+		selectedStep = name;
+
+		return Task.CompletedTask;
+	}
+
+	[Parameter]
+	public int Id { get; set; }
+	[Inject]
+	public IProductionsService ProductionsService { get; set; }
+	private ProductionDetails productionDetails = new ProductionDetails();
+	private IEnumerable<ProductionProgressState> productionProgressState = new List<ProductionProgressState>();
+
+
+	protected override async Task OnInitializedAsync()
+	{
+		productionDetails = await ProductionsService.GetProductionDetail(Id);
+		productionProgressState = await ProductionsService.GetProductionStates(Id);
+		await base.OnInitializedAsync();
+	}
+}

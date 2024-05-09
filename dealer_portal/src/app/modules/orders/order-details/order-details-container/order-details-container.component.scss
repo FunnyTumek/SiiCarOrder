@@ -1,0 +1,55 @@
+@use 'variables' as var;
+@use 'utils';
+
+:host {
+    @extend %flex-full-width;
+    flex-direction: column;
+    background-color: var.$background-color;
+    max-height: 100%;
+    padding: var.$normal-spacing;
+
+    .order-summary-container {
+        height: fit-content;
+        margin-bottom: var.$normal-spacing;
+    }
+
+    .order-details-container {
+        display: flex;
+        justify-content: space-around;
+        flex-grow: 1;
+
+        .mat-card-content {
+            padding: 0 var.$normal-spacing*2 var.$normal-spacing*2 var.$normal-spacing*2;
+        }
+
+        mat-card.details-column {
+            padding: 0;
+            flex-grow: 1;
+            max-width: 33%;
+
+            &:not(:last-child) {
+                margin-right: var.$normal-spacing*2;
+            }
+
+            mat-card-subtitle {
+                text-align: center;
+                background-color: var.$primary-light;
+                color: white;
+                padding: var.$normal-spacing*2;
+                border-top-right-radius: var.$normal-spacing;
+                border-top-left-radius: var.$normal-spacing;
+            }
+        }
+
+        .button-wrapper {
+            display: flex;
+            justify-content: end;
+            margin-top: var.$normal-spacing ;
+
+            button {
+                color: white;
+                background-color: var.$primary-light;
+            }
+        }
+    }
+}

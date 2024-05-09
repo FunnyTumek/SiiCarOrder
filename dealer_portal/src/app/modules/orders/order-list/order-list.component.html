@@ -1,0 +1,81 @@
+<div class="content-wrapper">
+    <div class="table-wrapper">
+        <table mat-table
+               [dataSource]="orderListData!.data"
+               class="table"
+               *ngIf="orderListData">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell
+                    *matHeaderCellDef> N. </th>
+                <td mat-cell
+                    *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="customerId">
+                <th mat-header-cell
+                    *matHeaderCellDef> CUSTOMER ID </th>
+                <td mat-cell
+                    *matCellDef="let element"> {{element.customerId}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="customerName">
+                <th mat-header-cell
+                    *matHeaderCellDef
+                    class="customer"> CUSTOMER NAME </th>
+                <td mat-cell
+                    *matCellDef="let element"
+                    class="customer"> {{element.customerName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="creationDate">
+                <th mat-header-cell
+                    *matHeaderCellDef> CREATION DATE </th>
+                <td mat-cell
+                    *matCellDef="let element"> {{element.creationDate | date}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+                <th mat-header-cell
+                    *matHeaderCellDef> PRICE </th>
+                <td mat-cell
+                    *matCellDef="let element"> {{element.price}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell
+                    *matHeaderCellDef> STATUS </th>
+                <td mat-cell
+                    *matCellDef="let element">
+                    <div class="status"
+                         [style.backgroundColor]="element?.status | indicatePriority">
+                        {{element.status | orderStatus}}
+                    </div>
+                </td>
+            </ng-container>
+            <colgroup>
+                <col [style.width]="'50px'">
+                <col>
+                <col [style.width]="'200px'">
+                <col [style.width]="'200px'">
+                <col [style.width]="'200px'">
+
+            </colgroup>
+            <tr mat-header-row
+                *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row
+                [class.selected-row]="row.id === selectedOrder?.id"
+                (click)="onRowSelected(row)"
+                (dblclick)="onRowDblClick(row)"
+                *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+
+    <mat-paginator [length]="orderListData?.totalRecords"
+                   [pageSize]="orderListData?.pageSize"
+                   [pageSizeOptions]="[5, 10, 25, 100]"
+                   (page)="getServerData($event)"
+                   aria-label="Select page"
+                   class="paginator">
+    </mat-paginator>
+
+</div>

@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Migrations\20220531125128_OrderListViewAdded_Up.sql" />
+    <None Remove="Migrations\20220531125404_FillDictionaryEntities_Down.sql" />
+    <None Remove="Migrations\20220531125404_FillDictionaryEntities_Up.sql" />
+    <None Remove="Migrations\20220606080534_RemovedEngineType_Down.sql" />
+    <None Remove="Migrations\20220606080534_RemovedEngineType_Up.sql" />
+    <None Remove="Migrations\20220614120452_addGearboxName_Up.sql" />
+    <None Remove="Migrations\20220621094943_ChangeGearboxTypeToEnum_Down.sql" />
+    <None Remove="Migrations\20220621094943_ChangeGearboxTypeToEnum_Up.sql" />
+    <None Remove="Migrations\20220705065700_OrderDetailListViewAdded_Up.sql" />
+    <None Remove="Migrations\20221018135313_AddPriceToConfigurationItems_Up.sql" />
+    <None Remove="Migrations\20221024135903_AddAvailableConfigurations_Up.sql" />
+    <None Remove="Migrations\20221209125255_ChangePriceToConfigurationItems_Up.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\20220705065700_OrderDetailListViewAdded_Up.sql" />
+    <EmbeddedResource Include="Migrations\20220531125128_OrderListViewAdded_Up.sql" />
+    <EmbeddedResource Include="Migrations\20220606080534_RemovedEngineType_Down.sql" />
+    <EmbeddedResource Include="Migrations\20220531125404_FillDictionaryEntities_Down.sql" />
+    <EmbeddedResource Include="Migrations\20220621094943_ChangeGearboxTypeToEnum_Down.sql" />
+    <EmbeddedResource Include="Migrations\20220621094943_ChangeGearboxTypeToEnum_Up.sql" />
+    <EmbeddedResource Include="Migrations\20220614120452_addGearboxName_Up.sql" />
+    <EmbeddedResource Include="Migrations\20220606080534_RemovedEngineType_Up.sql" />
+    <EmbeddedResource Include="Migrations\20220531125404_FillDictionaryEntities_Up.sql" />
+    <EmbeddedResource Include="Migrations\20221018135313_AddPriceToConfigurationItems_Up.sql" />
+    <EmbeddedResource Include="Migrations\20221024135903_AddAvailableConfigurations_Up.sql" />
+    <EmbeddedResource Include="Migrations\20221209125255_ChangePriceToConfigurationItems_Up.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="MediatR" Version="11.1.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="QuestPDF" Version="2022.6.3" />
+    <PackageReference Include="Serilog" Version="2.12.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.4.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\contracts\Sii.CarOrder.Contracts\Sii.CarOrder.Contracts.csproj" />
+    <ProjectReference Include="..\Sii.Dealer.Core.Application\Sii.Dealer.Core.Application.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\Sii.Dealer.Core.Domain\Sii.Dealer.Core.Domain.csproj" PrivateAssets="All" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,179 @@
+<div class="dialog-main-wrapper">
+    <h1 mat-dialog-title
+        class="title">Order confirmation</h1>
+
+    <div mat-dialog-content
+         class="details">
+        <div class="sub-title">
+            Client Details
+        </div>
+        <div class="details-wrapper">
+            <div class="details-block">
+                <div>
+                    <h4>Order ID:</h4>
+                    <span>{{data.order?.id}}</span>
+                </div>
+                <div>
+                    <h4>Creation date:</h4>
+                    <span>{{data.order?.creationDate | date}}</span>
+                </div>
+                <div>
+                    <h4>Price:</h4>
+                    <span>{{data.order?.price}}</span>
+                </div>
+                <div>
+                    <h4>Discount:</h4>
+                    <span>{{data.order?.discount}}</span>
+                </div>
+            </div>
+            <div class="details-block">
+                <div>
+                    <h4>First name:</h4>
+                    <span>{{data.customer?.customerFirstName}}</span>
+                </div>
+                <div>
+                    <h4>Last name:</h4>
+                    <span>{{data.customer?.customerLastName}}</span>
+                </div>
+                <div>
+                    <h4>E-mail:</h4>
+                    <span>{{data.customer?.customerEmail}}</span>
+                </div>
+                <div>
+                    <h4>Tel:</h4>
+                    <span>{{data.customer?.customerPhone}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="sub-title">
+            Ordrer Details
+        </div>
+        <table mat-table
+               [dataSource]="dataSource"
+               class="mat-table">
+
+            <ng-container matColumnDef="position"
+                          class="position">
+                <th mat-header-cell
+                    *matHeaderCellDef> No. </th>
+                <td mat-cell
+                    *matCellDef="let element"> {{element.position}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name"
+                          class="name">
+                <th mat-header-cell
+                    *matHeaderCellDef> Name </th>
+                <td mat-cell
+                    *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="quantity"
+                          class="quantity">
+                <th mat-header-cell
+                    *matHeaderCellDef> Quantity </th>
+                <td mat-cell
+                    *matCellDef="let element"> {{element.quantity}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="price"
+                          class="price">
+                <th mat-header-cell
+                    *matHeaderCellDef> Price </th>
+                <td mat-cell
+                    *matCellDef="let element"> {{element.price}} </td>
+            </ng-container>
+
+            <colgroup>
+                <col [style.width]="'5%'">
+                <col>
+                <col [style.width]="'10%'">
+                <col [style.width]="'20%'">
+
+            </colgroup>
+
+            <tr mat-header-row
+                *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row
+                *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <div mat-dialog-actions
+             class="order-total">
+            <div>
+                <h4>Sub total :</h4>
+                <input matInput
+                       disabled
+                       [value]="data.order.price|currency:'CAD':'symbol-narrow'">
+            </div>
+            <div>
+                <h4>Discount :</h4>
+                <input matInput
+                       [value]="data.order.discount|currency:'CAD':'symbol-narrow'">
+            </div>
+            <div>
+                <h4>Total :</h4>
+                <input matInput
+                       disabled
+                       [value]="data.order.price|currency:'CAD':'symbol-narrow'">
+            </div>
+
+        </div>
+        <div class="sub-title">
+            Payments
+        </div>
+        <div mat-dialog-actions
+             class="advance-slider">
+            <p>The amount of advance is :</p>
+            <input matInput
+                   disabled
+                   value={{advanceInPercent}}>
+            <mat-slider thumbLabel
+                        [displayWith]="formatLabel"
+                        tickInterval="1000"
+                        step="1"
+                        min="0"
+                        max="100"
+                        aria-label="unit"
+                        [(ngModel)]="advanceInPercent"
+                        (change)="calcAdvance(advanceInPercent)"></mat-slider>
+        </div>
+        <div mat-dialog-actions
+             class="payment">
+            <div>
+                <h4>Advance amount :</h4>
+                <input matInput
+                       disabled=""
+                       [value]="advanceValue |currency:'CAD':'symbol-narrow'">
+            </div>
+            <div>
+                <h4>Second transfer amount :</h4>
+                <input matInput
+                       [value]="secondTransferValue |currency:'CAD':'symbol-narrow'">
+            </div>
+        </div>
+
+        <div class="sub-title">
+            Agreement
+        </div>
+
+        <div mat-dialog-actions
+             class="agreement">
+            <p>Slide to confirm the order acceptation and signing all needed documents by client.</p>
+            <mat-slide-toggle [(ngModel)]="isAgreementSigned">Agreement was signed</mat-slide-toggle>
+        </div>
+
+        <div mat-dialog-actions
+             class="buttons">
+            <button mat-flat-button
+                    color="primary"
+                    mat-dialog-close
+                    (click)="closeDialog()">Close</button>
+            <button mat-flat-button
+                    [disabled]="!isAgreementSigned"
+                    color="primary"
+                    mat-dialog-close
+                    (click)="confirmDialog()">Confirm</button>
+        </div>
+    </div>

@@ -1,0 +1,39 @@
+@use 'variables';
+
+:host {
+  width: 100%;
+  border: 1px solid lightblue;
+  background-color: variables.$background-color;
+
+  mat-button-toggle-group {
+    margin: 2px;
+    height: 50px;
+
+    mat-button-toggle {
+      padding: 2px;
+      line-height: 40px;
+
+      mat-icon {
+        font-size: 1.8em;
+        color: #0353b6;
+        margin-bottom: 8px;
+      }
+
+      .tab-title {
+        font-size: 14px;
+        padding-left: 0.8em;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .container {
+    height: 100%;
+    width: 100%;
+  }
+
+}
+
+.mat-button-toggle-label-content {
+  line-height: 30px;
+}

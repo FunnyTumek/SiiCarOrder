@@ -1,0 +1,58 @@
+<div class="payment-summary-wrapper">
+    <div class="payment-summary">
+        <div class="payment-summary-element">
+            <div class="title">Order total:</div>
+            <div class="value">{{order?.price |currency:'CAD':'symbol-narrow'}}</div>
+        </div>
+        <div class="payment-summary-element">
+            <div class="title">Paid :</div>
+            <div class="value">{{sumOfConfirmedPayments |currency:'CAD':'symbol-narrow' }}</div>
+        </div>
+        <div class="payment-summary-element">
+            <div class="title">Order balance:</div>
+            <div class="value">{{balance |currency:'CAD':'symbol-narrow' }}</div>
+        </div>
+
+    </div>
+
+    <mat-progress-bar class="progress-bar"
+                      color="primary"
+                      mode="determinate"
+                      [value]="progressBar">
+    </mat-progress-bar>
+</div>
+
+<mat-accordion>
+    <div class="payment-item"
+         *ngFor="let item of availableDataSource">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{item.title}}
+                </mat-panel-title>
+                <mat-panel-description [style.backgroundColor]="item.status | indicatePriority">
+                    {{item.status |orderStatus}}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div *ngFor="let i of item.details"
+                 class="detail-item">
+                <div class="item-name">
+                    <p>{{i.key}}</p>
+                </div>
+                <div class="item-data"
+                     [ngSwitch]="i.key">
+                    <p *ngSwitchCase="'Payment ID'">{{i.value}}</p>
+                    <p *ngSwitchCase="'Payment amount'">{{i.value |currency:'CAD':'symbol-narrow' }}</p>
+                    <p *ngSwitchCase="'Confirmation date'">{{i.value |date:'medium' }}</p>
+                </div>
+            </div>
+            <div *ngIf="item.status===statuses.Waiting"
+                 class="buttons">
+                <button mat-flat-button
+                        color="primary"
+                        (click)="confirmPayment(item.orderId, item.paymentId)">Confirm payment</button>
+            </div>
+        </mat-expansion-panel>
+    </div>
+</mat-accordion>
